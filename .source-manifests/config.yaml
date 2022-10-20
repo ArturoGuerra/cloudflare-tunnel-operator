@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+  namespace: cloudflared # +operator-builder:field:name=namespace,type=string
+data:
+  # +operator-builder:field:name=tunnelID,type=string,replace="tunnelID"
+  # +operator-builder:field:name=service.protocol,type=string,replace="Protocol"
+  # +operator-builder:field:name=service.name,type=string,replace="ServiceName"
+  # +operator-builder:field:name=service.port,type=int,replace="PortNumber"
+  config.yaml: |
+    tunnel: tunnelID
+    credentials-file: /etc/cloudflared/tunnel.json
+    ingress:
+    - service: Protocol://ServiceName:PortNumber
+      originRequest:
+        noTLSVerify: true

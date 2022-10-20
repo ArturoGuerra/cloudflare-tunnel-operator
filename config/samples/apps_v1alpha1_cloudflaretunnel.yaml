@@ -1,0 +1,13 @@
+apiVersion: apps.ar2ro.io/v1alpha1
+kind: CloudflareTunnel
+metadata:
+  name: cloudflaretunnel-sample
+spec:
+  namespace: "Namespace of the tunnel"
+  replicas: 1
+  tunnelID: "Cloudflare Tunnel ID"
+  service:
+    protocol: "https | http | ssh | tcp"
+    name: "Name of target service"
+    port: 443
+  tunnelCredentials: "base64 of tunnel.json"

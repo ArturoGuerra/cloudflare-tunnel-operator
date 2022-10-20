@@ -1,0 +1,16 @@
+kind: StandaloneWorkload
+name: cloudflared
+spec:
+  api:
+    clusterScoped: true
+    domain: ar2ro.io
+    group: apps
+    kind: CloudflareTunnel
+    version: v1alpha1
+  companionCliRootcmd:
+    description: Manage cloudflare tunnel workload
+    name: cloudflared
+  resources:
+  - app.yaml
+  - config.yaml
+  - secret.yaml

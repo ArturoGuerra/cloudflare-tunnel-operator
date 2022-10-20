@@ -1,0 +1,24 @@
+domain: ar2ro.io
+layout:
+- go.kubebuilder.io/v3
+multigroup: true
+plugins:
+  operatorBuilder:
+    cliRootCommandName: cloudflared
+    controllerImg: ""
+    workloadConfigPath: .source-manifests/workload.yaml
+projectName: operator
+repo: github.com/arturoguerra/cloudflare-tunnel-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: ar2ro.io
+  group: apps
+  kind: CloudflareTunnel
+  path: github.com/arturoguerra/cloudflare-tunnel-operator/apis/apps/v1alpha1
+  version: v1alpha1
+- kind: ""
+  version: ""
+version: "3"

@@ -1,0 +1,56 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cloudflared
+  name: cloudflared
+  namespace: cloudflared # +operator-builder:field:name=namespace,type=string
+spec:
+  replicas: 1 # +operator-builder:field:name=replicas,default=1,type=int
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      containers:
+      - args:
+        - tunnel
+        - --no-autoupdate
+        - run
+        image: cloudflare/cloudflared:latest
+        imagePullPolicy: Always
+        name: cloudflared-tunnel
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        volumeMounts:
+        - mountPath: /etc/cloudflared/tunnel.json
+          name: cloudflared-auth
+          readOnly: true
+          subPath: tunnel.json
+        - mountPath: /etc/cloudflared/cert.pem
+          name: cloudflared-auth
+          readOnly: true
+          subPath: cert.pem
+        - mountPath: /etc/cloudflared/config.yaml
+          name: cloudflared-config
+          readOnly: true
+          subPath: config.yaml
+      volumes:
+      - name: cloudflared-auth
+        secret:
+          secretName: cloudflared-auth
+      - name: cloudflared-config
+        configMap:
+          items:
+          - key: config.yaml
+            path: config.yaml
+          name: cloudflared-config
