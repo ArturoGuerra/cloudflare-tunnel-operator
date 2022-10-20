@@ -3,11 +3,11 @@ kind: CloudflareTunnel
 metadata:
   name: cloudflaretunnel-sample
 spec:
-  namespace: "Namespace of the tunnel"
+  namespace: "Namespace of target service"
   replicas: 1
   tunnelID: "Cloudflare Tunnel ID"
   service:
-    protocol: "https | http | ssh | tcp"
-    name: "Name of target service"
+    protocol: "http | https | tcp | ssh | tls+tcp"
+    name: "Service Name"
     port: 443
   tunnelCredentials: "base64 of tunnel.json"

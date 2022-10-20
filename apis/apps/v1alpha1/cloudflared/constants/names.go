@@ -20,6 +20,7 @@ package constants
 // package to prevent import cycle errors when attempting to reference the names from other
 // packages (e.g. mutate).
 const (
+	NamespaceNamespace                  = "parent.Spec.Namespace"
 	DeploymentNamespaceCloudflared      = "cloudflared"
 	ConfigMapNamespaceCloudflaredConfig = "cloudflared-config"
 	SecretNamespaceCloudflaredAuth      = "cloudflared-auth"

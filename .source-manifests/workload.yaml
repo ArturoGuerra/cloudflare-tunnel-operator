@@ -11,6 +11,7 @@ spec:
     description: Manage cloudflare tunnel workload
     name: cloudflared
   resources:
+  - namespace.yaml
   - app.yaml
   - config.yaml
   - secret.yaml

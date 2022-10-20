@@ -112,6 +112,7 @@ var CreateFuncs = []func(
 	workload.Reconciler,
 	*workload.Request,
 ) ([]client.Object, error){
+	CreateNamespaceNamespace,
 	CreateDeploymentNamespaceCloudflared,
 	CreateConfigMapNamespaceCloudflaredConfig,
 	CreateSecretNamespaceCloudflaredAuth,
